@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { personal } from '../data/portfolio'
-import { FiArrowDown, FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 
 const containerVariants = {
   hidden: {},
@@ -51,15 +51,15 @@ export default function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] mb-4"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-4 whitespace-nowrap"
             >
               Hi, I'm{' '}
-              <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"
-                style={{ backgroundSize: '200% auto', animation: 'gradient-x 4s ease infinite' }}>
-                {personal.name.split(' ')[0]}
+              <span
+                className="bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"
+                style={{ backgroundSize: '200% auto', animation: 'gradient-x 4s ease infinite' }}
+              >
+                {personal.name}
               </span>
-              <br />
-              <span className="text-slate-100">{personal.name.split(' ')[1]}</span>
             </motion.h1>
 
             <motion.p
@@ -186,20 +186,8 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </motion.div>
-
-        {/* ── Scroll cue ──────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 text-xs"
-        >
-          <span>Scroll</span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-            <FiArrowDown size={16} />
-          </motion.div>
-        </motion.div>
       </div>
+
     </section>
   )
 }

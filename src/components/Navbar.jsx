@@ -31,16 +31,13 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-max flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
-        {/* Logo */}
+        {/* Wordmark */}
         <a
           href="#hero"
           onClick={(e) => { e.preventDefault(); handleNavClick('#hero') }}
-          className="text-lg font-bold tracking-tight"
+          className="text-sm font-semibold tracking-[0.15em] uppercase text-slate-400 hover:text-cyan-400 transition-colors duration-200"
         >
-          <span className="text-gradient bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
-            {personal.name.split(' ')[0]}
-          </span>
-          <span className="text-slate-300">.</span>
+          MK
         </a>
 
         {/* Desktop links */}
