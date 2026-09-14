@@ -135,6 +135,23 @@ export const projects = [
     githubUrl: 'https://github.com/Mani1454/autonomous-infra-agent',
     accent: 'violet',
   },
+  {
+    title: 'Apna Kirana',
+    subtitle: 'Hyperlocal Commerce & Store Management Engine',
+    description:
+      'A full-stack hyperlocal ordering and store management system built from the ground up — ' +
+      'enabling local Indian retail businesses to run their own direct delivery channel without paying 15–30% commission to aggregators like Blinkit or Zepto.',
+    bullets: [
+      'Dual-sided ecosystem: React Native customer app (Android APK + web) + real-time web POS for store counter',
+      'Hindi Voice Soundbox announces new orders aloud; order status syncs to customer app in under 1 second',
+      'UPI deep-link checkout — auto-fills GPay/PhonePe/Paytm with merchant ID and exact total',
+      'Side-by-side live demo (split screen) showing customer and shopkeeper views simultaneously',
+    ],
+    tags: ['React Native', 'Expo', 'JavaScript', 'Vercel', 'UPI Payments', 'Real-Time Sync', 'Web POS'],
+    liveUrl: 'https://apna-kirana-admin.vercel.app/live_demo.html',
+    githubUrl: 'https://github.com/Mani1454/Online_shop',
+    accent: 'emerald',
+  },
 ]
 
 export const education = [

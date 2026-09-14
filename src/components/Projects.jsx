@@ -4,10 +4,37 @@ import { projects, personal } from '../data/portfolio'
 import { SectionHeader } from './About'
 import { FiExternalLink, FiGithub, FiZap } from 'react-icons/fi'
 
+const accentMap = {
+  cyan: {
+    bar:    'from-cyan-500 to-cyan-400',
+    icon:   'bg-cyan-500/15 text-cyan-400',
+    sub:    'text-cyan-400',
+    dot:    'bg-cyan-500',
+    tag:    'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
+    btn:    'bg-cyan-500 text-white hover:bg-cyan-400 shadow-lg shadow-cyan-500/20',
+  },
+  violet: {
+    bar:    'from-violet-500 to-violet-400',
+    icon:   'bg-violet-500/15 text-violet-400',
+    sub:    'text-violet-400',
+    dot:    'bg-violet-500',
+    tag:    'bg-violet-500/10 text-violet-300 border-violet-500/20',
+    btn:    'bg-violet-500 text-white hover:bg-violet-400 shadow-lg shadow-violet-500/20',
+  },
+  emerald: {
+    bar:    'from-emerald-500 to-emerald-400',
+    icon:   'bg-emerald-500/15 text-emerald-400',
+    sub:    'text-emerald-400',
+    dot:    'bg-emerald-500',
+    tag:    'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+    btn:    'bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg shadow-emerald-500/20',
+  },
+}
+
 function ProjectCard({ project, index }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const isCyan = project.accent === 'cyan'
+  const c = accentMap[project.accent] ?? accentMap.cyan
 
   return (
     <motion.div
@@ -18,28 +45,18 @@ function ProjectCard({ project, index }) {
       className="group relative bg-navy-800 rounded-2xl border border-slate-700/50 card-glow overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col"
     >
       {/* Top accent bar */}
-      <div
-        className={`h-1 w-full bg-gradient-to-r ${
-          isCyan ? 'from-cyan-500 to-cyan-400' : 'from-violet-500 to-violet-400'
-        }`}
-      />
+      <div className={`h-1 w-full bg-gradient-to-r ${c.bar}`} />
 
       {/* Card body */}
       <div className="flex flex-col flex-1 p-6 sm:p-7">
         {/* Icon + title */}
         <div className="flex items-start gap-4 mb-4">
-          <div
-            className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              isCyan ? 'bg-cyan-500/15 text-cyan-400' : 'bg-violet-500/15 text-violet-400'
-            }`}
-          >
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${c.icon}`}>
             <FiZap size={18} />
           </div>
           <div>
             <h3 className="text-xl font-bold text-slate-100 leading-tight">{project.title}</h3>
-            <p className={`text-sm font-medium ${isCyan ? 'text-cyan-400' : 'text-violet-400'}`}>
-              {project.subtitle}
-            </p>
+            <p className={`text-sm font-medium ${c.sub}`}>{project.subtitle}</p>
           </div>
         </div>
 
@@ -50,11 +67,7 @@ function ProjectCard({ project, index }) {
         <ul className="space-y-2 mb-6 flex-1">
           {project.bullets.map((b, i) => (
             <li key={i} className="flex gap-2.5 text-xs text-slate-300 leading-relaxed">
-              <span
-                className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                  isCyan ? 'bg-cyan-500' : 'bg-violet-500'
-                }`}
-              />
+              <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${c.dot}`} />
               {b}
             </li>
           ))}
@@ -65,11 +78,7 @@ function ProjectCard({ project, index }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className={`text-xs px-2.5 py-1 rounded-md font-medium border ${
-                isCyan
-                  ? 'bg-cyan-500/8 text-cyan-300 border-cyan-500/20'
-                  : 'bg-violet-500/8 text-violet-300 border-violet-500/20'
-              }`}
+              className={`text-xs px-2.5 py-1 rounded-md font-medium border ${c.tag}`}
             >
               {tag}
             </span>
@@ -82,11 +91,7 @@ function ProjectCard({ project, index }) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
-              isCyan
-                ? 'bg-cyan-500 text-white hover:bg-cyan-400 shadow-lg shadow-cyan-500/20'
-                : 'bg-violet-500 text-white hover:bg-violet-400 shadow-lg shadow-violet-500/20'
-            }`}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${c.btn}`}
           >
             <FiExternalLink size={14} />
             Live Demo
@@ -113,10 +118,10 @@ export default function Projects() {
         <SectionHeader
           label="Featured Work"
           title="Projects"
-          subtitle="Production-ready AI systems — from sub-500ms voice pipelines to self-healing infrastructure agents."
+          subtitle="Production-ready systems — from sub-500ms AI voice pipelines to self-healing infra agents and hyperlocal commerce platforms."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
