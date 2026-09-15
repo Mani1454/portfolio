@@ -16,7 +16,7 @@ export const personal = {
     'Software engineer passionate about building intelligent, production-ready systems. ' +
     'I specialize in AI/LLM applications, agentic workflows, and real-time voice interfaces — ' +
     'shipping systems that are fast, reliable, and meaningfully automated. ' +
-    'From sub-500ms voice pipelines to self-healing infrastructure agents, I focus on AI that actually works in production.',
+    'From sub-second voice pipelines to self-healing infrastructure agents and full-stack platforms, I focus on engineering that solves real problems in production.',
 }
 
 export const skills = [
@@ -26,16 +26,17 @@ export const skills = [
     items: ['Python', 'C/C++', 'SQL', 'JavaScript', 'HTML', 'CSS'],
   },
   {
-    category: 'AI / LLMs',
+    category: 'AI & LLMs',
     icon: '🧠',
     items: [
       'Google Gemini API',
       'Gemini 2.5 Flash',
       'Groq LLM',
+      'Qwen 3.8 27B',
       'Agentic AI',
       'Prompt Engineering',
       'Streaming LLMs',
-      'Deepgram STT/TTS',
+      'Deepgram Nova-3 & Aura',
     ],
   },
   {
@@ -45,11 +46,24 @@ export const skills = [
       'FastAPI',
       'Streamlit',
       'Uvicorn',
+      'Starlette',
       'WebSockets',
       'REST APIs',
       'Async Programming',
       'Multithreading',
-      'Starlette',
+    ],
+  },
+  {
+    category: 'Mobile & Frontend',
+    icon: '📱',
+    items: [
+      'React Native',
+      'Expo',
+      'EAS Build',
+      'Web Audio API',
+      'AudioWorklet',
+      'Canvas API',
+      'Tailwind CSS',
     ],
   },
   {
@@ -61,15 +75,23 @@ export const skills = [
       'Pandas',
       'NumPy',
       'Plotly',
-      'Web Audio API',
-      'AudioWorklet',
-      'Canvas API',
+      'UPI Deep-Linking',
+      'Rational Resampling',
     ],
   },
   {
     category: 'DevOps & Tools',
     icon: '🛠',
-    items: ['Docker', 'Render', 'Streamlit Cloud', 'Git', 'GitHub', 'Linux'],
+    items: [
+      'Docker',
+      'Render',
+      'Vercel',
+      'Streamlit Cloud',
+      'Git',
+      'GitHub',
+      'Linux',
+      'Postman',
+    ],
   },
 ]
 

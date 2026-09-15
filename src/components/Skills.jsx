@@ -5,8 +5,10 @@ import { SectionHeader } from './About'
 
 const categoryColors = {
   'Languages': { bg: 'bg-sky-500/10', text: 'text-sky-300', border: 'border-sky-500/20', header: 'text-sky-400' },
+  'AI & LLMs': { bg: 'bg-cyan-500/10', text: 'text-cyan-300', border: 'border-cyan-500/20', header: 'text-cyan-400' },
   'AI / LLMs': { bg: 'bg-cyan-500/10', text: 'text-cyan-300', border: 'border-cyan-500/20', header: 'text-cyan-400' },
   'Frameworks & Backend': { bg: 'bg-violet-500/10', text: 'text-violet-300', border: 'border-violet-500/20', header: 'text-violet-400' },
+  'Mobile & Frontend': { bg: 'bg-rose-500/10', text: 'text-rose-300', border: 'border-rose-500/20', header: 'text-rose-400' },
   'Libraries & APIs': { bg: 'bg-emerald-500/10', text: 'text-emerald-300', border: 'border-emerald-500/20', header: 'text-emerald-400' },
   'DevOps & Tools': { bg: 'bg-amber-500/10', text: 'text-amber-300', border: 'border-amber-500/20', header: 'text-amber-400' },
 }

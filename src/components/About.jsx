@@ -30,9 +30,9 @@ export default function About() {
 
   const stats = [
     { value: '2+', label: 'Years Building AI' },
-    { value: '2', label: 'Production Projects' },
+    { value: '3', label: 'Production Projects' },
     { value: '2', label: 'Hackathon Wins' },
-    { value: '<500ms', label: 'Voice Latency' },
+    { value: '<600ms', label: 'Voice Latency' },
   ]
 
   return (
@@ -56,14 +56,14 @@ export default function About() {
               {personal.summary}
             </p>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-              I'm drawn to the intersection of AI research and production engineering — where ideas become systems
-              that users can actually touch. Whether it's shaving milliseconds off a voice pipeline or designing
-              a self-healing agent that knows when to ask for human approval, I care deeply about{' '}
-              <span className="text-cyan-400 font-medium">reliability, speed, and intent</span>.
+              I'm drawn to the intersection of AI research and systems engineering — where ideas become robust systems
+              that users can actually touch. Whether it's shaving milliseconds off a voice pipeline, designing
+              an autonomous agent that knows when to ask for human approval, or architecting full-stack platforms from scratch, I care deeply about{' '}
+              <span className="text-cyan-400 font-medium">reliability, speed, and real-world impact</span>.
             </p>
 
             <div className="flex flex-wrap gap-3">
-              {['Agentic Systems', 'Real-Time Voice AI', 'Enterprise Automation', 'Backend Engineering'].map((tag) => (
+              {['Agentic Systems', 'Real-Time Voice AI', 'Enterprise Automation', 'Backend Engineering', 'Mobile & Full-Stack'].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1.5 rounded-full text-xs font-semibold bg-navy-700 text-cyan-300 border border-cyan-500/20"
