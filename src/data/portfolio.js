@@ -5,7 +5,7 @@
 
 export const personal = {
   name: 'Manish Kumar',
-  title: 'AI & LLM Engineer',
+  title: 'Software Engineer — AI & Systems',
   tagline: 'Building Agentic AI · Real-Time Voice Systems · Enterprise Automation',
   email: 'manishkumarmaurya8873@gmail.com',
   phone: '+91-8873679268',
