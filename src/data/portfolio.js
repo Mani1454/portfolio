@@ -102,20 +102,20 @@ export const experiences = [
 
 export const projects = [
   {
-    title: 'AuraSpeak',
-    subtitle: 'Real-Time AI Voice Assistant',
+    title: 'SwaySpeak',
+    subtitle: 'Interactive AI English Tutor & Voice Coach',
     description:
-      'A production-grade real-time AI voice assistant achieving sub-500ms end-to-end response latency. ' +
-      'Features a concurrent speech pipeline for transcription, LLM inference, and TTS playback with intelligent interruption handling for natural turn-taking.',
+      'A high-performance, ultra-low latency interactive English conversation coach engineered for real-time spoken practice. ' +
+      'Combines warm spoken phrasing feedback with direct answers, visual coaching cards, and instant barge-in interruptibility without requiring a GPU.',
     bullets: [
-      'Sub-500ms end-to-end latency via concurrent transcription + LLM + TTS pipeline',
-      'Browser-based voice UI using Web Audio API, AudioWorklet & Canvas visualizations',
-      'Multithreaded interruption handling for natural conversational turn-taking',
-      'Containerized with Docker and deployed on Render',
+      'Two-part spoken response architecture: gentle spoken phrasing corrections + direct helpful answers and real-time visual coach cards',
+      'Sub-second voice latency (~600–900ms) utilizing streaming Groq LPU inference (Qwen 3.8 27B) and Deepgram Aura (Asteria) TTS',
+      'Dynamic rational polyphase audio resampling (160/441) reconciling 44.1/48kHz soundcards with 16kHz Deepgram Nova-3 engine',
+      'Browser voice pipeline built with Web Audio AudioWorklet for zero-latency capture and instant barge-in interruption',
     ],
-    tags: ['Python', 'FastAPI', 'WebSockets', 'Deepgram STT/TTS', 'Groq LLM', 'Web Audio API', 'Docker', 'Render'],
-    liveUrl: 'https://auraspeak.onrender.com/',
-    githubUrl: 'https://github.com/Mani1454/auraspeak',
+    tags: ['Python', 'FastAPI', 'WebSockets', 'Deepgram Nova-3', 'Deepgram Aura', 'Groq (Qwen 3.8)', 'AudioWorklet', 'Docker', 'Render'],
+    liveUrl: 'https://swayspeak.onrender.com/',
+    githubUrl: 'https://github.com/Mani1454/swayspeak',
     accent: 'cyan',
   },
   {
