@@ -1,54 +1,100 @@
 import { useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import { projects, experience, links, capabilities } from "./data/portfolio";
-import NeuralScene from "./components/portfolio/NeuralScene";
 import ProjectVisual from "./components/portfolio/ProjectVisual";
 import ProjectDialog from "./components/portfolio/ProjectDialog";
 import Icon from "./components/portfolio/Icon";
 
+const selectedWork = [projects[1], projects[0], projects[2], projects[3]];
 const navigation = [
-  ["work", "Selected work"],
-  ["expertise", "Expertise"],
+  ["work", "Work"],
   ["about", "About"],
+  ["contact", "Contact"],
 ];
 
-function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [filter, setFilter] = useState("All work");
-  const [selected, setSelected] = useState(null);
-  const [copied, setCopied] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const copyTimer = useRef();
-  const visibleProjects =
-    filter === "All work"
-      ? projects
-      : projects.filter((project) => project.category === filter);
-
+function useMotion(paused) {
+  const lenis = useRef(null);
   useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function setup() {
+      lenis.current?.destroy();
+      lenis.current = preference.matches
+        ? null
+        : new Lenis({
+            autoRaf: true,
+            lerp: 0.085,
+            smoothWheel: true,
+            syncTouch: false,
+            anchors: { offset: -28 },
+            prevent: (node) => node.tagName === "DIALOG",
+          });
+    }
+    setup();
+    preference.addEventListener("change", setup);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
         });
       },
-      { rootMargin: "-20% 0px -45% 0px" },
+      { threshold: 0.08 },
     );
     document
-      .querySelectorAll("main > section[id]")
-      .forEach((section) => observer.observe(section));
+      .querySelectorAll("[data-reveal]")
+      .forEach((element) => observer.observe(element));
     return () => {
+      lenis.current?.destroy();
+      preference.removeEventListener("change", setup);
       observer.disconnect();
-      clearTimeout(copyTimer.current);
     };
   }, []);
+  useEffect(() => {
+    if (paused) lenis.current?.stop();
+    else lenis.current?.start();
+  }, [paused]);
+}
 
+function LocalTime() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const update = () =>
+      setTime(
+        new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date()),
+      );
+    update();
+    const timer = setInterval(update, 60000);
+    return () => clearInterval(timer);
+  }, []);
+  return <span>{time} IST</span>;
+}
+
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const [expanded, setExpanded] = useState(0);
+  const copyTimer = useRef();
+  const menuButton = useRef();
+  useMotion(Boolean(selected));
+
+  useEffect(() => () => clearTimeout(copyTimer.current), []);
   useEffect(() => {
     if (!menuOpen) return;
-    const close = (event) => {
+    function close(event) {
       if (event.key === "Escape") {
         setMenuOpen(false);
-        document.querySelector(".menu-toggle")?.focus();
+        menuButton.current?.focus();
       }
-    };
+    }
     window.addEventListener("keydown", close);
     return () => window.removeEventListener("keydown", close);
   }, [menuOpen]);
@@ -69,48 +115,18 @@ function App() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="site-header">
+      <header className="site-header wrap">
         <a
           className="brand"
           href="#home"
           aria-label="Manish Kumar, home"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="brand-mark">
-            m<span>k</span>
-            <i />
-          </span>
-          <span className="brand-name">
-            MANISH
-            <br />
-            KUMAR
-          </span>
+          mk<span>.</span>
         </a>
-        <nav
-          className={`navigation ${menuOpen ? "is-open" : ""}`}
-          id="site-navigation"
-          aria-label="Main navigation"
-        >
-          {navigation.map(([id, label]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={activeSection === id ? "is-active" : ""}
-              aria-current={activeSection === id ? "location" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
-          <a
-            className="nav-contact"
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Let’s talk <Icon name="arrow-up-right" />
-          </a>
-        </nav>
+        <span className="header-note">A little curiosity goes a long way.</span>
         <button
+          ref={menuButton}
           className="menu-toggle"
           type="button"
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}
@@ -118,352 +134,316 @@ function App() {
           aria-controls="site-navigation"
           onClick={() => setMenuOpen(!menuOpen)}
         >
+          <span>{menuOpen ? "Close" : "Menu"}</span>
           <Icon name={menuOpen ? "close" : "menu"} />
         </button>
+        <nav
+          id="site-navigation"
+          className={`navigation ${menuOpen ? "is-open" : ""}`}
+          aria-label="Main navigation"
+        >
+          {navigation.map(([id, label], index) => (
+            <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
+              <span>{label}</span>
+              <sup>0{index + 1}</sup>
+            </a>
+          ))}
+        </nav>
       </header>
       <main id="main">
-        <section className="hero" id="home" aria-labelledby="hero-heading">
-          <div className="hero-grid" aria-hidden="true" />
-          <div className="hero-content">
-            <div className="eyebrow hero-eyebrow">
-              <span className="status-dot" /> AVAILABLE FOR AI ENGINEERING ROLES
-            </div>
-            <h1 id="hero-heading">
-              Engineering
-              <br />
-              <em>intelligence.</em>
-            </h1>
-            <div className="hero-intro">
-              <span className="intro-line" />
-              <p>
-                I’m Manish, an AI engineer turning complex
-                <br className="desktop-break" /> ideas into systems that{" "}
-                <strong>think, speak, and act.</strong>
-              </p>
-            </div>
-            <div className="hero-actions">
-              <a href="#work" className="button button-primary">
-                Explore my work <Icon name="arrow-down-right" />
-              </a>
-              <a
-                href={links.github}
-                target="_blank"
-                rel="noreferrer"
-                className="text-link"
-              >
-                <Icon name="github" /> GitHub <Icon name="arrow-up-right" />
-              </a>
-            </div>
+        <section className="hero wrap" id="home" aria-labelledby="hero-heading">
+          <div className="hero-kicker">
+            <span>AI ENGINEER & DEVELOPER</span>
+            <span>BASED IN INDIA ↗</span>
           </div>
-          <div className="hero-art">
-            <NeuralScene />
-            <div className="art-coordinate top-coordinate">
-              <span>FIG. 01</span> INTELLIGENCE, IN MOTION
-            </div>
-            <div className="art-coordinate bottom-coordinate">
-              <span className="tiny-cross">+</span> GENERATE · EVALUATE · REFINE
-            </div>
-          </div>
-          <div className="hero-bottom">
-            <a href="#work" className="scroll-cue">
-              <span className="scroll-track">
-                <i />
-              </span>{" "}
-              SCROLL TO DISCOVER
-            </a>
-            <span className="hero-specialties">
-              AGENTIC AI <i /> VOICE SYSTEMS <i /> APPLIED ML
+          <h1 id="hero-heading" className="hero-name">
+            <span>
+              Manish Kumar<span className="blue-dot">.</span>
             </span>
-            <span className="edition">PORTFOLIO / 2026</span>
+          </h1>
+          <div className="hero-bottom">
+            <div className="portrait-note">
+              <div className="portrait-print">
+                <img
+                  src={`${import.meta.env.BASE_URL}assets/profile-photo.jpg`}
+                  alt="Manish Kumar"
+                  width="200"
+                  height="230"
+                  fetchPriority="high"
+                />
+                <span>THE PERSON BEHIND THE CODE</span>
+              </div>
+              <span className="handwritten">Hey, that’s me!</span>
+              <svg
+                className="sketch-arrow"
+                width="60"
+                height="55"
+                viewBox="0 0 60 55"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M55 45C18 54 5 30 18 8m-14 9L18 5l5 17"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <div className="hero-description">
+              <p>
+                I build things that
+                <br />
+                make AI <em>feel useful.</em>
+              </p>
+              <span>
+                From a conversation that flows to an agent that helps.
+                <br className="desktop-break" /> Thoughtful engineering, with
+                people in mind.
+              </span>
+            </div>
+            <div className="hero-side">
+              <p>
+                <span className="status-dot" /> OPEN TO OPPORTUNITIES
+              </p>
+              <a
+                className="round-link"
+                href="#work"
+                aria-label="Explore selected work"
+              >
+                <Icon name="arrow-down-right" />
+              </a>
+              <span className="scroll-note">A FEW THINGS I’VE BUILT ↓</span>
+            </div>
           </div>
         </section>
-        <div className="focus-strip" aria-label="Areas of focus">
-          <span>FROM EXPERIMENT TO EXPERIENCE</span>
-          <div>
-            Multi-agent systems <span>✳</span> Real-time voice AI <span>✳</span>{" "}
-            Retrieval & tool use <span>✳</span> Applied machine learning
-          </div>
-          <Icon name="asterisk" />
-        </div>
+
         <section
-          className="section work-section"
+          className="work-section wrap"
           id="work"
           aria-labelledby="work-heading"
         >
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">
-                <span className="section-number">01 /</span> SELECTED WORK
-              </p>
-              <h2 id="work-heading">
-                Built to solve.
-                <br />
-                <span>Designed to matter.</span>
-              </h2>
-            </div>
-            <p className="section-description">
-              A few explorations in making AI useful.
-              <br />
-              Real problems, thoughtful systems, open code.
-            </p>
+          <div className="section-rule" data-reveal>
+            <h2 id="work-heading">Selected work</h2>
+            <span>2026 — A CONTINUING EXPLORATION</span>
+            <span>(04)</span>
           </div>
-          <div className="work-toolbar">
-            <div
-              className="filter-list"
-              role="group"
-              aria-label="Filter projects"
-            >
-              {["All work", "Agents & LLMs", "ML & systems"].map((item) => (
-                <button
-                  key={item}
-                  className={`filter ${filter === item ? "is-selected" : ""}`}
-                  aria-pressed={filter === item}
-                  onClick={() => setFilter(item)}
-                >
-                  {item}
-                  {item === "All work" ? <sup>04</sup> : null}
-                </button>
-              ))}
-            </div>
-            <span className="project-count" aria-live="polite">
-              {String(visibleProjects.length).padStart(2, "0")} PROJECTS
-            </span>
-          </div>
-          <div className="project-grid">
-            {visibleProjects.map((project) => (
+          <div className="work-grid">
+            {selectedWork.map((project, index) => (
               <article
-                className={`project-card project-${project.visual}`}
+                className={`project-card card-${project.visual}`}
                 key={project.id}
+                data-reveal
               >
                 <button
-                  className="project-cover"
+                  className={`project-cover cover-${project.visual}`}
                   onClick={() => setSelected(project)}
                   aria-label={`Read ${project.title} case study`}
                 >
                   <ProjectVisual type={project.visual} />
-                  <span className="project-index">/ {project.index}</span>
-                  <span className="project-cover-label">{project.label}</span>
-                  <span className="project-open">
-                    <Icon name="arrow-up-right" />
+                  <span className="cover-caption">
+                    {index === 0
+                      ? "CONVERSATIONS, WITHOUT THE FRICTION."
+                      : index === 1
+                        ? "A LITTLE MORE PEACE OF MIND."
+                        : index === 2
+                          ? "FINDING THE STORY IN THE SIGNAL."
+                          : "BUILT FOR THE SHOP NEXT DOOR."}
+                  </span>
+                  <span className="view-project">
+                    View project <Icon name="arrow-up-right" />
                   </span>
                 </button>
-                <div className="project-meta">
-                  <span>{project.discipline}</span>
-                  <span>{project.year}</span>
+                <div className="project-info">
+                  <div>
+                    <span className="project-kind">{project.discipline}</span>
+                    <h3>
+                      <button onClick={() => setSelected(project)}>
+                        {project.title}
+                      </button>
+                    </h3>
+                  </div>
+                  <span className="project-number">0{index + 1}</span>
                 </div>
-                <div className="project-title-row">
-                  <h3>
-                    <button onClick={() => setSelected(project)}>
-                      {project.title}
-                    </button>
-                  </h3>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${project.title} source code on GitHub`}
-                  >
-                    <Icon name="github" />
-                  </a>
-                </div>
-                <p className="project-summary">{project.summary}</p>
-                <div className="tag-list">
-                  {project.stack.slice(0, 4).map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
+                <p className="project-description">{project.summary}</p>
               </article>
             ))}
           </div>
           <a
-            className="all-projects"
-            href={links.github + "?tab=repositories"}
+            className="underlined-link all-work"
+            href={links.github}
             target="_blank"
             rel="noreferrer"
           >
-            <span>THERE’S MORE IN THE REPOSITORIES</span>
-            <span>
-              Explore all projects <Icon name="arrow-up-right" />
-            </span>
+            There’s more on GitHub <Icon name="arrow-up-right" />
           </a>
         </section>
+
         <section
-          className="expertise-section"
-          id="expertise"
-          aria-labelledby="expertise-heading"
-        >
-          <div className="section">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">
-                  <span className="section-number">02 /</span> THE TOOLKIT
-                </p>
-                <h2 id="expertise-heading">Beyond the prompt.</h2>
-              </div>
-              <p className="section-description">
-                Models are one part of the system.
-                <br />I care about everything around them.
-              </p>
-            </div>
-            <div className="capability-grid">
-              {capabilities.map((capability, index) => (
-                <article className="capability" key={capability.title}>
-                  <div className="capability-top">
-                    <Icon name={capability.icon} />
-                    <span>0{index + 1}</span>
-                  </div>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.description}</p>
-                  <div className="capability-tags">
-                    {capability.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-            <div className="principles">
-              <span className="eyebrow">HOW I APPROACH THE WORK</span>
-              <p>
-                Start with the problem.<span> Make the system observable.</span>{" "}
-                Keep the human in the loop.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section
-          className="section about-section"
+          className="about-section"
           id="about"
           aria-labelledby="about-heading"
         >
-          <div className="about-intro">
-            <div>
-              <p className="eyebrow">
-                <span className="section-number">03 /</span> THE PERSON BEHIND
-                THE CODE
-              </p>
+          <div className="wrap">
+            <div className="section-rule" data-reveal>
+              <span>A BIT ABOUT ME</span>
+              <span>(02)</span>
+            </div>
+            <div className="about-intro" data-reveal>
+              <span className="about-asterisk" aria-hidden="true">
+                ✳
+              </span>
               <h2 id="about-heading">
-                Curiosity is
+                Good technology should
                 <br />
-                the <em>constant.</em>
+                make life <em>less complicated.</em>
+                <br />
+                That’s what I work toward.
               </h2>
             </div>
-            <div className="about-copy">
-              <p>
-                I’m Manish Kumar, a software engineer focused on AI and systems,
-                with a Computer Science & Engineering background from RGIPT. I
-                build at the intersection of machine learning, software
-                engineering, and useful human experiences.
-              </p>
-              <p>
-                From conversational voice agents to infrastructure automation, I
-                care about the details that make AI useful: grounded reasoning,
-                fast feedback, reliable services, and human oversight.
-              </p>
-              <a
-                href={links.linkedin}
-                className="text-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                More about me on LinkedIn <Icon name="arrow-up-right" />
-              </a>
-            </div>
-          </div>
-          <div className="experience-layout">
-            <div className="experience-caption">
-              <span className="eyebrow">EXPERIENCE</span>
-              <p>
-                Learning by
+            <div className="about-columns" data-reveal>
+              <p className="about-label">
+                Engineer by training.
                 <br />
-                <span>building.</span>
+                Builder by instinct.
               </p>
+              <div className="about-copy">
+                <p>
+                  I’m Manish, an AI engineer with a computer science background
+                  from RGIPT. I like getting past the prototype: connecting
+                  models to the data, tools, and interfaces that make them
+                  useful.
+                </p>
+                <p>
+                  My work spans voice applications, infrastructure agents, and
+                  machine learning. I care about the details in between—how a
+                  conversation handles an interruption, or when an automated
+                  action should wait for a person.
+                </p>
+              </div>
             </div>
-            <div className="experience-list">
-              {experience.map((job) => (
-                <article className="experience-item" key={job.company}>
-                  <div className="experience-header">
+            <div className="capability-list">
+              {capabilities.map((capability, index) => (
+                <div
+                  className={`capability ${expanded === index ? "is-expanded" : ""}`}
+                  key={capability.title}
+                  data-reveal
+                >
+                  <h3>
+                    <button
+                      aria-expanded={expanded === index}
+                      aria-controls={`capability-${index}`}
+                      onClick={() =>
+                        setExpanded(expanded === index ? -1 : index)
+                      }
+                    >
+                      <span className="capability-number">0{index + 1}</span>
+                      <span>{capability.title}</span>
+                      <span className="expand-icon" aria-hidden="true">
+                        +
+                      </span>
+                    </button>
+                  </h3>
+                  <div
+                    className="capability-panel"
+                    id={`capability-${index}`}
+                    inert={expanded !== index ? "" : undefined}
+                    aria-hidden={expanded !== index}
+                  >
                     <div>
-                      <h3>{job.role}</h3>
-                      <span className="company">{job.company}</span>
+                      <p>{capability.description}</p>
+                      <div className="tag-list">
+                        {capability.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
                     </div>
-                    <span className="experience-date">{job.date}</span>
                   </div>
-                  <p>{job.description}</p>
-                  <div className="tag-list">
-                    {job.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-              <article className="education-item">
-                <Icon name="education" />
-                <div>
-                  <h3>B.Tech · Computer Science & Engineering</h3>
-                  <p>Rajiv Gandhi Institute of Petroleum Technology</p>
                 </div>
-                <span>2022 — 2026</span>
-              </article>
+              ))}
+            </div>
+            <div className="experience-section" data-reveal>
+              <h3>The journey so far</h3>
+              <div className="experience-list">
+                {experience.map((job) => (
+                  <div className="experience-row" key={job.company}>
+                    <div>
+                      <h4>{job.role}</h4>
+                      <p>{job.company}</p>
+                    </div>
+                    <span>{job.date}</span>
+                  </div>
+                ))}
+                <div className="experience-row">
+                  <div>
+                    <h4>Computer Science & Engineering</h4>
+                    <p>Rajiv Gandhi Institute of Petroleum Technology</p>
+                  </div>
+                  <span>2022 — 2026</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
         <section
-          className="contact-section"
+          className="contact-section wrap"
           id="contact"
           aria-labelledby="contact-heading"
         >
-          <div className="contact-orbit" aria-hidden="true" />
-          <div className="section contact-inner">
-            <p className="eyebrow">
-              <span className="status-dot" /> OPEN TO THE NEXT CHALLENGE
-            </p>
+          <div className="section-rule" data-reveal>
+            <span>HAVE SOMETHING IN MIND?</span>
+            <span>(03)</span>
+          </div>
+          <div className="contact-heading-row" data-reveal>
             <h2 id="contact-heading">
-              Let’s build
+              Let’s make
               <br />
-              something <em>intelligent.</em>
-              <span className="contact-asterisk" aria-hidden="true">
-                ✳
-              </span>
+              <em>something good.</em>
             </h2>
-            <div className="contact-bottom">
-              <p>
-                Hiring for an AI engineering role?
-                <br />
-                Have an interesting problem? Let’s talk.
-              </p>
-              <div className="email-actions">
-                <a href={`mailto:${links.email}`} className="email-link">
-                  {links.email} <Icon name="arrow-up-right" />
-                </a>
-                <button
-                  className="copy-email"
-                  onClick={copyEmail}
-                  aria-label="Copy email address"
-                >
-                  <Icon name={copied ? "check" : "copy"} />
-                </button>
-                <span className="copy-status" role="status">
-                  {copied ? "Email copied" : ""}
-                </span>
-              </div>
+            <a
+              className="contact-orb"
+              href={`mailto:${links.email}`}
+              aria-label="Email Manish Kumar"
+            >
+              <Icon name="arrow-up-right" />
+              <span>SAY HELLO</span>
+            </a>
+          </div>
+          <div className="contact-bottom" data-reveal>
+            <p>
+              A role, a collaboration, or a good conversation.
+              <br />
+              My inbox is open.
+            </p>
+            <div className="email-actions">
+              <a href={`mailto:${links.email}`} className="email-link">
+                {links.email}
+              </a>
+              <button
+                className="copy-button"
+                onClick={copyEmail}
+                aria-label={copied ? "Email copied" : "Copy email address"}
+              >
+                <Icon name={copied ? "check" : "copy"} />
+                <span aria-live="polite">{copied ? "Copied!" : "Copy"}</span>
+              </button>
             </div>
           </div>
         </section>
       </main>
-      <footer className="site-footer">
-        <a href="#home" className="footer-name">
-          Manish Kumar <span>© {new Date().getFullYear()}</span>
+      <footer className="site-footer wrap">
+        <a href="#home" className="footer-credit" aria-label="Back to top">
+          © {new Date().getFullYear()} Manish Kumar <Icon name="arrow-up" />
         </a>
-        <div>
+        <span className="local-time">
+          INDIA <LocalTime />
+        </span>
+        <div className="footer-socials">
           <a href={links.github} target="_blank" rel="noreferrer">
             GitHub <Icon name="arrow-up-right" />
           </a>
           <a href={links.linkedin} target="_blank" rel="noreferrer">
             LinkedIn <Icon name="arrow-up-right" />
-          </a>
-          <a href="#home">
-            Back to top <Icon name="arrow-up" />
           </a>
         </div>
       </footer>
@@ -471,5 +451,3 @@ function App() {
     </>
   );
 }
-
-export default App;

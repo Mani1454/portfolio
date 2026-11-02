@@ -1,205 +1,182 @@
+// Original editorial illustrations, not screenshots or live project telemetry.
+const waveHeights = [
+  12, 22, 36, 19, 48, 65, 32, 54, 88, 112, 70, 46, 91, 128, 103, 54, 76, 112,
+  145, 118, 69, 36, 55, 78, 44, 24, 38, 17, 28, 12,
+];
 export default function ProjectVisual({ type }) {
-  if (type === "council")
-    return (
-      <div className="visual visual-council" aria-hidden="true">
-        <div className="visual-grid" />
-        <div className="council-caption">INFRA / AGENT OPERATIONS</div>
-        <svg className="council-connections" viewBox="0 0 600 350">
-          <defs>
-            <linearGradient id="council-line">
-              <stop stopColor="#ff763f" stopOpacity=".2" />
-              <stop offset="1" stopColor="#ff763f" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M120 100C120 180 300 110 300 220M300 100V220M480 100C480 180 300 110 300 220"
-            fill="none"
-            stroke="url(#council-line)"
-          />
-          <path d="M300 245v70" stroke="#ff763f" strokeDasharray="3 5" />
-        </svg>
-        <div className="agent-row">
-          <div>
-            <span>01</span>
-            <i>⌘</i>
-            <strong>Diagnoser</strong>
-          </div>
-          <div>
-            <span>02</span>
-            <i>✳</i>
-            <strong>Planner</strong>
-          </div>
-          <div>
-            <span>03</span>
-            <i>◈</i>
-            <strong>Operator</strong>
-          </div>
-        </div>
-        <div className="council-core">
-          a<span>i</span>
-          <i>2</i>
-        </div>
-        <div className="council-result">
-          <span /> RETRIEVE. PLAN. APPROVE.
-        </div>
-      </div>
-    );
   if (type === "voice")
     return (
       <div className="visual visual-voice" aria-hidden="true">
-        <div className="voice-rings">
-          <i />
-          <i />
-          <i />
+        <div className="voice-wordmark">
+          sway<span>speak</span>
+          <span className="voice-flower">✳</span>
         </div>
-        <div className="voice-top">
-          <span className="status-dot" /> SWAYSPEAK <span>VOICE INTERFACE</span>
+        <span className="visual-small voice-subtitle">
+          A LITTLE PRACTICE. A LOT MORE CONFIDENCE.
+        </span>
+        <div className="conversation">
+          <div className="speech speech-one">
+            Let’s talk about your day.<span>↗</span>
+          </div>
+          <div className="speech speech-two">Okay, where do I start?</div>
         </div>
-        <div className="waveform">
-          {Array.from({ length: 53 }, (_, i) => (
-            <i
-              key={i}
-              style={{
-                "--bar-height": `${12 + Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.23)) * 100}%`,
-                "--bar-delay": `${i * 0.055}s`,
-              }}
-            />
+        <div className="sound-wave">
+          {waveHeights.map((height, i) => (
+            <i key={i} style={{ height: `${height}px`, "--bar": i }} />
           ))}
         </div>
-        <div className="voice-bottom">
-          <span>LISTEN.</span>
-          <span>LEARN.</span>
-          <span>SPEAK.</span>
+        <span className="voice-listening">
+          <i /> YOUR VOICE, FINDING ITS FLOW.
+        </span>
+      </div>
+    );
+  if (type === "council")
+    return (
+      <div className="visual visual-infra" aria-hidden="true">
+        <div className="infra-brand">
+          <span>
+            infra<span className="infra-star">✳</span>
+          </span>
+          <span>
+            AN EXTRA PAIR
+            <br />
+            OF EYES.
+          </span>
+        </div>
+        <div className="infra-window">
+          <div className="window-top">
+            <span>
+              <i />
+              <i />
+              <i />
+            </span>
+            <span>INCIDENT WORKSPACE</span>
+            <b>↗</b>
+          </div>
+          <div className="infra-window-body">
+            <div className="infra-alert">
+              <span className="infra-alert-dot" />
+              <span>Something needs a closer look.</span>
+              <b>01</b>
+            </div>
+            <div className="infra-step">
+              <span>01</span>
+              <div>
+                <b>Find the context</b>
+                <small>Retrieve relevant runbooks</small>
+              </div>
+              <i>✓</i>
+            </div>
+            <div className="infra-step">
+              <span>02</span>
+              <div>
+                <b>Make a plan</b>
+                <small>Propose a clear next step</small>
+              </div>
+              <i>✓</i>
+            </div>
+            <div className="infra-approval">
+              <span>03</span>
+              <div>
+                <b>You have the final say.</b>
+                <small>Waiting for human approval</small>
+              </div>
+              <span>↗</span>
+            </div>
+          </div>
+        </div>
+        <div className="infra-footnote">
+          <span>OBSERVE → UNDERSTAND → ACT</span>
+          <span>WITH YOU IN CONTROL.</span>
         </div>
       </div>
     );
   if (type === "trends")
     return (
-      <div className="visual visual-trends visual-maritime" aria-hidden="true">
-        <div className="trend-header">
-          <span>AIS / VESSEL INTELLIGENCE</span>
-          <span>GEOSPATIAL ML ↗</span>
+      <div className="visual visual-sea" aria-hidden="true">
+        <div className="sea-header">
+          <span>FIELD NOTES / 003</span>
+          <span>MARITIME INTELLIGENCE</span>
         </div>
-        <svg className="maritime-map" viewBox="0 0 600 360">
-          <defs>
-            <pattern
-              id="map-grid"
-              width="35"
-              height="35"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M35 0H0V35"
-                fill="none"
-                stroke="#a7bf9115"
-                strokeWidth=".7"
-              />
-            </pattern>
-          </defs>
-          <rect width="600" height="360" fill="url(#map-grid)" />
+        <div className="sea-title">
+          A sea of data.
+          <br />
+          <em>A clearer picture.</em>
+        </div>
+        <svg className="sea-map" viewBox="0 0 600 400" fill="none">
+          <g stroke="currentColor" strokeWidth="0.8" opacity=".25">
+            <path d="M-40 300C120 50 200 380 370 170S600 100 660 20M-40 320C130 70 210 400 380 190S610 120 670 40M-40 340C140 90 220 420 390 210S620 140 680 60M-40 360C150 110 230 440 400 230S630 160 690 80M-40 380C160 130 240 460 410 250S640 180 700 100M-40 400C170 150 250 480 420 270S650 200 710 120M-40 420C180 170 260 500 430 290S660 220 720 140M-40 440C190 190 270 520 440 310S670 240 730 160M-40 460C200 210 280 540 450 330S680 260 740 180" />
+          </g>
           <path
-            d="M0 60 60 82 95 70 127 118 113 155 160 177 139 200 170 251 120 290 131 360H0Z"
-            fill="#9cae7b16"
-            stroke="#9cae7b35"
+            className="vessel-path"
+            d="M65 280 146 244 210 255 267 192 326 208 380 155 435 128 493 154 540 99"
+            stroke="#eaf3dd"
+            strokeWidth="2"
+            strokeDasharray="5 7"
           />
-          <path
-            d="M600 0H470l-20 40 25 32-45 25 35 41-5 42 57 25 83-12Z"
-            fill="#9cae7b16"
-            stroke="#9cae7b35"
-          />
-          <path
-            d="m175 282 55-50 20-42 47-39 48-35 55-23"
-            fill="none"
-            stroke="#b3ca91"
-            strokeWidth="1.5"
-            strokeDasharray="4 6"
-          />
-          <path
-            d="m190 290 45-35 27-44 43-18 35 25 37-37-17-52 49-48"
-            fill="none"
-            stroke="#eaa977"
-            strokeWidth="1.5"
-          />
-          <circle
-            cx="340"
-            cy="218"
-            r="24"
-            fill="#eaa9770a"
-            stroke="#eaa97750"
-          />
-          <circle cx="340" cy="218" r="5" fill="#eaa977" />
-          <circle cx="175" cy="282" r="3" fill="#b3ca91" />
-          <circle cx="400" cy="93" r="3" fill="#b3ca91" />
-          <path d="m370 217 35 0 10 13h88" fill="none" stroke="#eaa97766" />
+          <g fill="#eaf3dd">
+            <circle cx="65" cy="280" r="4" />
+            <circle cx="267" cy="192" r="5" />
+            <circle cx="435" cy="128" r="5" />
+          </g>
+          <circle cx="493" cy="154" r="24" fill="#edee9e" fillOpacity=".15" />
+          <circle cx="493" cy="154" r="7" fill="#edee9e" />
+          <path d="m493 154 32 48h52" stroke="#edee9e" />
           <text
-            x="420"
-            y="222"
-            fill="#e6bc96"
-            fontSize="8"
+            x="507"
+            y="220"
+            fill="#edee9e"
+            fontSize="10"
             fontFamily="monospace"
-            letterSpacing="1"
           >
-            ANOMALY FLAG
-          </text>
-          <text
-            x="223"
-            y="134"
-            fill="#abc194"
-            fontSize="8"
-            fontFamily="monospace"
-            letterSpacing="1"
-          >
-            EXPECTED ROUTE
+            LOOK CLOSER
           </text>
         </svg>
-        <span className="visual-note">ILLUSTRATIVE VESSEL TRAJECTORIES</span>
+        <div className="map-coordinate">AIS / MOVEMENT / PATTERNS</div>
       </div>
     );
   return (
-    <div className="visual visual-commerce" aria-hidden="true">
-      <div className="commerce-caption">APNA KIRANA / LOCAL COMMERCE</div>
-      <div className="commerce-phone">
-        <div className="phone-island" />
-        <div className="phone-store">
-          apna<span>kirana.</span>
+    <div className="visual visual-kirana" aria-hidden="true">
+      <div className="kirana-wordmark">
+        <span>अपना</span>
+        <strong>kirana.</strong>
+      </div>
+      <p className="kirana-tagline">
+        Your neighbourhood.
+        <br />A little more connected.
+      </p>
+      <div className="shopping-receipt">
+        <div className="receipt-top">
+          APNA KIRANA<span>YOUR LOCAL STORE, ONLINE</span>
         </div>
-        <p>
-          Your neighbourhood,
+        <div className="receipt-line">
+          <span>Fresh essentials</span>
+          <span>✓</span>
+        </div>
+        <div className="receipt-line">
+          <span>Order from anywhere</span>
+          <span>✓</span>
+        </div>
+        <div className="receipt-line">
+          <span>Pay with UPI</span>
+          <span>✓</span>
+        </div>
+        <div className="receipt-total">
+          <span>Made for your everyday.</span>
+          <span>♡</span>
+        </div>
+        <div className="receipt-barcode" />
+        <span className="receipt-thanks">THANK YOU. SEE YOU AGAIN!</span>
+      </div>
+      <div className="kirana-sticker">
+        <span>
+          LOCAL
           <br />
-          <strong>delivered.</strong>
-        </p>
-        <div className="grocery-items">
-          <span>
-            ◒<small>Fresh produce</small>
-          </span>
-          <span>
-            ◫<small>Daily essentials</small>
-          </span>
-        </div>
-        <div className="phone-cart">
-          Your basket <b>3 items ↗</b>
-        </div>
+          FEELS
+          <br />
+          <b>GOOD.</b>
+        </span>
       </div>
-      <div className="commerce-counter">
-        <div className="counter-title">
-          <span className="status-dot" /> STORE COUNTER <span>LIVE</span>
-        </div>
-        <div className="counter-order">
-          New order received <b>↗</b>
-        </div>
-        <div className="counter-item">
-          <span>Order status</span>
-          <strong>Preparing</strong>
-        </div>
-        <div className="counter-item">
-          <span>Payment method</span>
-          <strong>UPI</strong>
-        </div>
-        <div className="counter-sync">
-          <span /> Customer & counter in sync
-        </div>
-      </div>
-      <span className="commerce-study">INTERFACE STUDY</span>
     </div>
   );
 }
