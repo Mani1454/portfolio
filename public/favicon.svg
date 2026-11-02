@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#0a0f1e"/>
-  <text x="6" y="23" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="url(#g)">M</text>
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="32" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22d3ee"/>
-      <stop offset="1" stop-color="#a78bfa"/>
-    </linearGradient>
-  </defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#111210"/><path d="M10 43V24h9v6c3-8 13-8 13 2v11" fill="none" stroke="#efeee8" stroke-width="5"/><path d="M41 13v31m0-10 12-11M41 34l13 10" fill="none" stroke="#ff7b47" stroke-width="5"/></svg>

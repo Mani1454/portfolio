@@ -1,12 +1,5 @@
-# /public/assets/
+# Portfolio assets
 
-## Required image assets — drop these files here:
+`profile-photo.jpg` is retained for future use. The current opening section uses an original procedural Three.js sculpture.
 
-| File | Description | Usage |
-|------|-------------|-------|
-| `profile-photo.jpg` | Your headshot photo (square, min 500×500px recommended) | Hero section profile circle |
-
-### Notes:
-- If `profile-photo.jpg` is missing, the Hero shows a gradient **"MK"** fallback avatar automatically.
-- Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`
-- Rename to `profile-photo.jpg` (or update the `src` in `Hero.jsx`)
+The previous résumé PDF was removed from this public directory. Add a reviewed replacement and a corresponding interface link when it is ready to publish.

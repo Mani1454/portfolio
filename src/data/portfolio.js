@@ -1,225 +1,222 @@
-// ─────────────────────────────────────────────────────────────
-//  Single source of truth for all portfolio content.
-//  Edit links, descriptions, and social URLs here.
-// ─────────────────────────────────────────────────────────────
-
-export const personal = {
-  name: 'Manish Kumar',
-  title: 'Software Engineer — AI & Systems',
-  tagline: 'Building Agentic AI · Real-Time Voice Systems · Enterprise Automation',
-  email: 'manishkumarmaurya8873@gmail.com',
-  phone: '+91-8873679268',
-  linkedin: 'https://www.linkedin.com/in/manish-kumar-22cs3037/',
-  github: 'https://github.com/Mani1454',
-  resumeUrl: '/assets/Manish_Kumar_Resume.pdf',
-  summary:
-    'Software engineer passionate about building intelligent, production-ready systems. ' +
-    'I specialize in AI/LLM applications, agentic workflows, and real-time voice interfaces — ' +
-    'shipping systems that are fast, reliable, and meaningfully automated. ' +
-    'From sub-second voice pipelines to self-healing infrastructure agents and full-stack platforms, I focus on engineering that solves real problems in production.',
-}
-
-export const skills = [
-  {
-    category: 'Languages',
-    icon: '{ }',
-    items: ['Python', 'C/C++', 'SQL', 'JavaScript', 'HTML', 'CSS'],
-  },
-  {
-    category: 'AI & LLMs',
-    icon: '🧠',
-    items: [
-      'Google Gemini API',
-      'Gemini 2.5 Flash',
-      'Groq LLM',
-      'Qwen 3.8 27B',
-      'Agentic AI',
-      'Prompt Engineering',
-      'Streaming LLMs',
-      'Deepgram Nova-3 & Aura',
-    ],
-  },
-  {
-    category: 'Frameworks & Backend',
-    icon: '⚙️',
-    items: [
-      'FastAPI',
-      'Streamlit',
-      'Uvicorn',
-      'Starlette',
-      'WebSockets',
-      'REST APIs',
-      'Async Programming',
-      'Multithreading',
-    ],
-  },
-  {
-    category: 'Mobile & Frontend',
-    icon: '📱',
-    items: [
-      'React Native',
-      'Expo',
-      'EAS Build',
-      'Web Audio API',
-      'AudioWorklet',
-      'Canvas API',
-      'Tailwind CSS',
-    ],
-  },
-  {
-    category: 'Libraries & APIs',
-    icon: '📦',
-    items: [
-      'google-genai',
-      'psutil',
-      'Pandas',
-      'NumPy',
-      'Plotly',
-      'UPI Deep-Linking',
-      'Rational Resampling',
-    ],
-  },
-  {
-    category: 'DevOps & Tools',
-    icon: '🛠',
-    items: [
-      'Docker',
-      'Render',
-      'Vercel',
-      'Streamlit Cloud',
-      'Git',
-      'GitHub',
-      'Linux',
-      'Postman',
-    ],
-  },
-]
-
-export const experiences = [
-  {
-    role: 'AI & Automation Engineer',
-    company: 'Enterprise AI Division',
-    period: 'Aug 2026 – Present',
-    type: 'Full-Time',
-    bullets: [
-      'Architect and deploy AI-driven automation for enterprise IT operations, streamlining ticket workflows and reducing repetitive manual effort at scale.',
-      'Integrate AI/ML capabilities with IT service-management systems to improve ticket triage, workflow routing, and operational productivity.',
-      'Build scalable, production-ready automation components with a focus on reliability, performance, and maintainability.',
-    ],
-    tags: ['Agentic AI', 'Enterprise Automation', 'Backend Engineering', 'AI/ML Integration'],
-  },
-  {
-    role: 'AI Intern',
-    company: 'HumanizeIQ',
-    period: 'Jun 2026 – Jul 2026',
-    type: 'Internship',
-    bullets: [
-      'Integrated Gemini-powered AI features into Secure Chat, enabling real-time conversation, brainstorming, diagramming, and creative assistant workflows.',
-      'Engineered prompt strategies for summarization and intent understanding, improving response relevance across AI-assisted chat workflows.',
-      'Hardened AI request flows with permission-aware backend controls to protect sensitive user data in secure enterprise chat contexts.',
-    ],
-    tags: ['Gemini API', 'Prompt Engineering', 'FastAPI', 'Secure Backend'],
-  },
-]
+// Verified against Mani1454/portfolio and the linked project repositories.
+// Keep public-facing claims and links here so future updates stay in one place.
+export const links = {
+  email: "manishkumarmaurya8873@gmail.com",
+  github: "https://github.com/Mani1454",
+  linkedin: "https://www.linkedin.com/in/manish-kumar-22cs3037/",
+};
 
 export const projects = [
   {
-    title: 'SwaySpeak',
-    subtitle: 'Interactive AI English Tutor & Voice Coach',
-    description:
-      'A high-performance, ultra-low latency interactive English conversation coach engineered for real-time spoken practice. ' +
-      'Combines warm spoken phrasing feedback with direct answers, visual coaching cards, and instant barge-in interruptibility without requiring a GPU.',
-    bullets: [
-      'Two-part spoken response architecture: gentle spoken phrasing corrections + direct helpful answers and real-time visual coach cards',
-      'Sub-second voice latency (~600–900ms) utilizing streaming Groq LPU inference (Qwen 3.8 27B) and Deepgram Aura (Asteria) TTS',
-      'Dynamic rational polyphase audio resampling (160/441) reconciling 44.1/48kHz soundcards with 16kHz Deepgram Nova-3 engine',
-      'Browser voice pipeline built with Web Audio AudioWorklet for zero-latency capture and instant barge-in interruption',
+    id: "infrastructure-agent",
+    index: "01",
+    title: "Autonomous Infrastructure Agent",
+    visual: "council",
+    label: "OBSERVE. REASON. ACT. WITH OVERSIGHT.",
+    discipline: "MULTI-AGENT SYSTEMS · RAG",
+    year: "2026",
+    category: "Agents & LLMs",
+    summary:
+      "A self-healing infrastructure lab that grounds agent decisions in runbooks and puts a human approval gate before remediation.",
+    stack: [
+      "Python",
+      "ChromaDB",
+      "Azure OpenAI",
+      "Streamlit",
+      "psutil",
+      "Plotly",
     ],
-    tags: ['Python', 'FastAPI', 'WebSockets', 'Deepgram Nova-3', 'Deepgram Aura', 'Groq (Qwen 3.8)', 'AudioWorklet', 'Docker', 'Render'],
-    liveUrl: 'https://swayspeak.onrender.com/',
-    githubUrl: 'https://github.com/Mani1454/swayspeak',
-    accent: 'cyan',
+    repo: "https://github.com/Mani1454/autonomous-infra-agent",
+    demo: "https://autonomous-infra-agent.streamlit.app/",
+    problem:
+      "Infrastructure alerts need context before they become safe actions. A useful operations agent must connect telemetry to relevant runbooks, explain its plan, and make execution inspectable.",
+    approach:
+      "A Diagnoser agent retrieves incident context from ChromaDB and produces a diagnostic report. A Planner turns it into structured remediation tool calls. In the default human-in-the-loop mode, execution waits for operator approval, then records actions and checks system health.",
+    decisions: [
+      "Ground diagnosis in a searchable incident and runbook knowledge base.",
+      "Separate diagnosis, planning, approval, and execution into explicit stages.",
+      "Provide mock infrastructure tools and an offline engine for repeatable, credential-free demonstrations.",
+    ],
+    result:
+      "A Streamlit mission-control application with telemetry, incident simulation, retrieval, multi-agent planning, an approval workflow, and audit logging. Infrastructure remediation tools are simulated in the demo.",
+    flow: [
+      "Telemetry",
+      "RAG diagnosis",
+      "Tool plan",
+      "Human approval",
+      "Action & audit",
+    ],
   },
   {
-    title: 'Autonomous Infrastructure Agent',
-    subtitle: 'Self-Healing IT Operations',
-    description:
-      'An AI-powered self-healing infrastructure agent that autonomously detects CPU/RAM anomalies, ' +
-      'performs root-cause analysis, and executes remediation — with a Human-in-the-Loop approval mechanism for controlled AI actions.',
-    bullets: [
-      'Detects CPU/RAM anomalies with AI-driven root-cause analysis via Gemini 2.5 Flash',
-      'Human-in-the-Loop engine: manual-approval and autonomous remediation modes',
-      'Real-time Plotly telemetry dashboards with append-only audit logging',
-      'Interactive Demo Mode on Streamlit Community Cloud — credential-free',
+    id: "swayspeak",
+    index: "02",
+    title: "SwaySpeak",
+    visual: "voice",
+    label: "A MORE NATURAL WAY TO LEARN.",
+    discipline: "REAL-TIME VOICE AI",
+    year: "2026",
+    category: "Agents & LLMs",
+    summary:
+      "An English conversation coach that listens, offers spoken feedback, and answers naturally—with interruption handling throughout.",
+    stack: [
+      "FastAPI",
+      "WebSockets",
+      "Deepgram",
+      "Groq",
+      "AudioWorklet",
+      "Docker",
     ],
-    tags: ['Python', 'Streamlit', 'Gemini 2.5 Flash', 'psutil', 'Plotly', 'Agentic AI', 'Docker'],
-    liveUrl: 'https://autonomous-infra-agent.streamlit.app/',
-    githubUrl: 'https://github.com/Mani1454/autonomous-infra-agent',
-    accent: 'violet',
+    repo: "https://github.com/Mani1454/swayspeak",
+    demo: "https://swayspeak.onrender.com/",
+    problem:
+      "Speaking practice needs room for natural pauses, useful feedback, and the freedom to interrupt. Sequential audio and model calls make conversations feel slow and rigid.",
+    approach:
+      "Stream microphone audio over WebSockets to a FastAPI backend, transcribe with Deepgram, generate structured coaching responses through Groq, and stream speech back to the browser alongside visual coaching cards.",
+    decisions: [
+      "Use AudioWorklet for browser audio capture and playback.",
+      "Resample microphone audio to the transcription service’s expected sample rate.",
+      "Coordinate cancellation across speech generation and playback when the learner interrupts.",
+    ],
+    result:
+      "A deployed voice-coaching application with spoken corrections, direct answers, visual coach cards, and a modular streaming backend. The source documents Docker and local development workflows.",
+    flow: [
+      "Microphone",
+      "Streaming STT",
+      "LLM coaching",
+      "Streaming TTS",
+      "Audio & cards",
+    ],
   },
   {
-    title: 'Apna Kirana',
-    subtitle: 'Hyperlocal Commerce & Store Management Engine',
-    description:
-      'A full-stack hyperlocal ordering and store management system built from the ground up — ' +
-      'enabling local Indian retail businesses to run their own direct delivery channel without paying 15–30% commission to aggregators like Blinkit or Zepto.',
-    bullets: [
-      'Dual-sided ecosystem: React Native customer app (Android APK + web) + real-time web POS for store counter',
-      'Hindi Voice Soundbox announces new orders aloud; order status syncs to customer app in under 1 second',
-      'UPI deep-link checkout — auto-fills GPay/PhonePe/Paytm with merchant ID and exact total',
-      'Side-by-side live demo (split screen) showing customer and shopkeeper views simultaneously',
+    id: "ais-anomaly",
+    index: "03",
+    title: "Signals in the open sea",
+    visual: "trends",
+    label: "MAKING UNUSUAL MOVEMENT VISIBLE.",
+    discipline: "GEOSPATIAL ML · ANOMALY DETECTION",
+    year: "2026",
+    category: "ML & systems",
+    summary:
+      "An end-to-end AIS data pipeline that detects unusual vessel behavior and turns model outputs into interactive geospatial insights.",
+    stack: ["Python", "Scikit-learn", "PostGIS", "Folium", "Pandas"],
+    repo: "https://github.com/Mani1454/ais-vessel-anomaly-detection",
+    problem:
+      "Raw vessel positions do not explain suspicious movement or identity inconsistencies. Geospatial data also needs careful handling so model transformations do not corrupt map coordinates.",
+    approach:
+      "Validate and clean AIS records, engineer movement and identity features, combine unsupervised anomaly detectors, and compare supervised vessel classifiers. Store spatial results in PostGIS and inspect them on Folium maps.",
+    decisions: [
+      "Combine Isolation Forest, Local Outlier Factor, and an autoencoder in an anomaly ensemble.",
+      "Keep model feature scaling separate from geographic coordinates used for storage and mapping.",
+      "Use a modular batch pipeline with explicit data, feature, and model stages.",
     ],
-    tags: ['React Native', 'Expo', 'JavaScript', 'Vercel', 'UPI Payments', 'Real-Time Sync', 'Web POS'],
-    liveUrl: 'https://apna-kirana-admin.vercel.app/live_demo.html',
-    githubUrl: 'https://github.com/Mani1454/Online_shop',
-    accent: 'emerald',
+    result:
+      "A demonstration pipeline with anomaly detection, vessel-type classification, spatial storage, and interactive maps. The project documents its small demonstration dataset and future evaluation improvements.",
+    flow: [
+      "AIS records",
+      "Validation",
+      "Feature pipeline",
+      "Model ensemble",
+      "PostGIS & maps",
+    ],
   },
-]
+  {
+    id: "apna-kirana",
+    index: "04",
+    title: "Apna Kirana",
+    visual: "model",
+    label: "LOCAL COMMERCE. CONNECTED.",
+    discipline: "FULL-STACK · REAL-TIME SYSTEMS",
+    year: "2026",
+    category: "ML & systems",
+    summary:
+      "A customer app and store-counter experience that connects local retailers with direct ordering, UPI checkout, and live order updates.",
+    stack: [
+      "React Native",
+      "Expo",
+      "Firestore",
+      "JavaScript",
+      "Web Speech API",
+    ],
+    repo: "https://github.com/Mani1454/Online_shop",
+    demo: "https://apna-kirana-admin.vercel.app/live_demo.html",
+    problem:
+      "Local retailers need an ordering experience that connects customers, payments, and store operations without depending on an aggregator’s storefront.",
+    approach:
+      "Build a React Native customer application and a web point-of-sale interface, synchronize order state through Firestore, and use UPI intents for checkout. A browser-based Hindi soundbox announces incoming orders.",
+    decisions: [
+      "Share order state across customer and shopkeeper experiences with real-time subscriptions.",
+      "Use native UPI deep links with a prefilled merchant and order total.",
+      "Provide a side-by-side browser demo to make the full journey easy to explore.",
+    ],
+    result:
+      "An Android and web commerce project with customer browsing, cart and checkout, a store counter, live status updates, and a split-screen demonstration. It shows the full-stack engineering behind the AI work.",
+    flow: [
+      "Customer app",
+      "Order & UPI",
+      "Cloud sync",
+      "Store counter",
+      "Status update",
+    ],
+  },
+];
 
-export const education = [
+export const capabilities = [
   {
-    degree: 'B.Tech. in Computer Science & Engineering',
-    institution: 'Rajiv Gandhi Institute of Petroleum Technology',
-    period: '2022 – 2026',
-    detail: 'CPI: 7.69',
-    coursework: [
-      'Data Structures & Algorithms',
-      'Machine Learning',
-      'Deep Learning',
-      'DBMS',
-      'Operating Systems',
-      'Computer Networks',
+    icon: "nodes",
+    title: "Agents & grounded reasoning",
+    description:
+      "Connecting model reasoning to runbooks, tools, and controlled workflows, with clear approval and audit boundaries.",
+    tags: [
+      "Multi-agent orchestration",
+      "RAG · ChromaDB",
+      "Azure OpenAI · Gemini",
+      "Structured tool calls",
+      "Human-in-the-loop",
     ],
   },
   {
-    degree: 'Intermediate (Class XII)',
-    institution: 'Dr. I.S.N.R.K.P.L.D. Kisan College, Sitamarhi',
-    period: '2019 – 2021',
-    detail: 'Score: 80.8%',
-    coursework: [],
+    icon: "wave",
+    title: "Real-time AI experiences",
+    description:
+      "Building the streaming services and audio interfaces that make conversations with AI feel natural and responsive.",
+    tags: [
+      "Python · FastAPI",
+      "WebSockets",
+      "Deepgram · Groq",
+      "AudioWorklet",
+      "Async · Multithreading",
+    ],
   },
   {
-    degree: 'Matriculation (Class X)',
-    institution: 'Simultala Awasiya Vidyalaya',
-    period: '2018 – 2019',
-    detail: '94.2% · Bihar Board State Rank 13',
-    coursework: [],
+    icon: "layers",
+    title: "Systems that support the AI",
+    description:
+      "Bringing data pipelines, APIs, and product interfaces together so the model becomes part of a working system.",
+    tags: [
+      "Scikit-learn · Pandas",
+      "SQL · PostGIS",
+      "React · React Native",
+      "Docker · Linux · Git",
+      "REST APIs",
+    ],
   },
-]
+];
 
-export const achievements = [
-  { icon: '🏆', title: 'IIT Mandi Hackathon', detail: 'Winner' },
-  { icon: '🥈', title: 'IIT Bombay Hackathon', detail: 'Grand Finalist' },
-  { icon: '🎯', title: 'JEE Advanced', detail: 'Top 2% nationally' },
-  { icon: '🏅', title: 'Bihar Board Matriculation', detail: 'State Rank 13' },
-  { icon: '📜', title: 'NTSE Stage 1', detail: 'Qualified' },
-]
-
-export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
-  { label: 'Contact', href: '#contact' },
-]
+export const experience = [
+  {
+    role: "AI & Automation Engineer",
+    company: "Enterprise AI Division",
+    date: "AUG 2026 — PRESENT",
+    description:
+      "Build AI-driven automation for enterprise IT operations, including ticket triage, workflow routing, and AI/ML integrations. Focus on reliable backend components and maintainable operational workflows.",
+    tags: ["Agentic AI", "Enterprise automation", "Backend engineering"],
+  },
+  {
+    role: "AI Intern",
+    company: "HumanizeIQ",
+    date: "JUN — JUL 2026",
+    description:
+      "Integrated Gemini-powered features into Secure Chat, including brainstorming and diagramming. Refined prompts for summaries and user intent, and added permission-aware backend controls around AI requests.",
+    tags: ["Gemini API", "Prompt engineering", "Secure backend"],
+  },
+];
