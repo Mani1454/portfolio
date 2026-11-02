@@ -211,12 +211,4 @@ export const experience = [
       "Build AI-driven automation for enterprise IT operations, including ticket triage, workflow routing, and AI/ML integrations. Focus on reliable backend components and maintainable operational workflows.",
     tags: ["Agentic AI", "Enterprise automation", "Backend engineering"],
   },
-  {
-    role: "AI Intern",
-    company: "HumanizeIQ",
-    date: "JUN — JUL 2026",
-    description:
-      "Integrated Gemini-powered features into Secure Chat, including brainstorming and diagramming. Refined prompts for summaries and user intent, and added permission-aware backend controls around AI requests.",
-    tags: ["Gemini API", "Prompt engineering", "Secure backend"],
-  },
 ];
