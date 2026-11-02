@@ -1,5 +1,7 @@
 # Portfolio assets
 
-`profile-photo.jpg` is retained for future use. The current opening section uses an original procedural Three.js sculpture.
+`profile-photo.jpg` is Manish Kumar's existing portrait, displayed with a grayscale CSS treatment in the introduction. Project cover illustrations are original HTML/CSS/SVG in `src/components/portfolio/ProjectVisual.jsx`.
 
-The previous résumé PDF was removed from this public directory. Add a reviewed replacement and a corresponding interface link when it is ready to publish.
+Font files and their OFL licenses are in `public/fonts/`.
+
+The previous résumé PDF remains removed. Add a reviewed replacement and its interface link when it is ready to publish.
