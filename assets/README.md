@@ -4,4 +4,4 @@
 
 Font files and their OFL licenses are in `public/fonts/`.
 
-The previous résumé PDF remains removed. Add a reviewed replacement and its interface link when it is ready to publish.
+`Manish_Kumar_Resume.pdf` is the résumé offered for download in the introduction.
