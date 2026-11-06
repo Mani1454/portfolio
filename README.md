@@ -26,7 +26,7 @@ For GitHub Pages, run `npm run build:pages`. This selects `/portfolio/` as the a
 
 Edit `src/data/portfolio.js` for projects, case studies, experience, contact details, and skills. The display order is defined in `src/App.jsx`. All project links lead to the actual source repositories; three projects also link to their separately hosted demos.
 
-Résumé links and the public PDF remain removed. The original LaTeX source is retained outside the public directory for a future update.
+The introduction links to the downloadable résumé in `public/assets/Manish_Kumar_Resume.pdf`.
 
 ## Design and interactions
 

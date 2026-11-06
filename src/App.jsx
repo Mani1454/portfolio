@@ -201,6 +201,13 @@ export default function App() {
                 <br className="desktop-break" /> Thoughtful engineering, with
                 people in mind.
               </span>
+              <a
+                className="resume-link"
+                href={`${import.meta.env.BASE_URL}assets/Manish_Kumar_Resume.pdf`}
+                download="Manish_Kumar_Resume.pdf"
+              >
+                Download résumé (PDF)
+              </a>
             </div>
             <div className="hero-side">
               <p>
