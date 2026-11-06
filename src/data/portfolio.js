@@ -9,7 +9,7 @@ export const links = {
 export const projects = [
   {
     id: "infrastructure-agent",
-    index: "01",
+    index: "02",
     title: "Autonomous Infrastructure Agent",
     visual: "council",
     label: "OBSERVE. REASON. ACT. WITH OVERSIGHT.",
@@ -17,7 +17,7 @@ export const projects = [
     year: "2026",
     category: "Agents & LLMs",
     summary:
-      "A self-healing infrastructure lab that grounds agent decisions in runbooks and puts a human approval gate before remediation.",
+      "An operations lab where an agent looks up incident runbooks and proposes a fix. An operator can review the plan, approve a simulated action, and inspect the audit log.",
     stack: [
       "Python",
       "ChromaDB",
@@ -48,56 +48,41 @@ export const projects = [
     ],
   },
   {
-    id: "swayspeak",
-    index: "02",
-    title: "SwaySpeak",
+    id: "speak-with-sway",
+    index: "01",
+    title: "Speak with Sway",
     visual: "voice",
-    label: "A MORE NATURAL WAY TO LEARN.",
-    discipline: "REAL-TIME VOICE AI",
+    discipline: "VOICE AI · LIVE AVATAR",
     year: "2026",
-    category: "Agents & LLMs",
     summary:
-      "An English conversation coach that listens, offers spoken feedback, and answers naturally—with interruption handling throughout.",
-    stack: [
-      "FastAPI",
-      "WebSockets",
-      "Deepgram",
-      "Groq",
-      "AudioWorklet",
-      "Docker",
-    ],
-    repo: "https://github.com/Mani1454/swayspeak",
-    demo: "https://swayspeak.onrender.com/",
+      "Practice spoken English with a tutor whose face moves as it replies. Sway suggests more natural phrasing, asks follow-up questions, and lets you interrupt.",
+    stack: ["FastAPI", "WebSockets", "Deepgram", "Groq", "OpenSpline", "AudioWorklet"],
+    repo: "https://github.com/Mani1454/speak-with-sway",
+    demo: "https://speak-with-sway.onrender.com/",
     problem:
-      "Speaking practice needs room for natural pauses, useful feedback, and the freedom to interrupt. Sequential audio and model calls make conversations feel slow and rigid.",
+      "A learner needs time to finish a thought and a way to take the floor again. Gaps in the audio or a face that keeps talking after an interruption break the rhythm.",
     approach:
-      "Stream microphone audio over WebSockets to a FastAPI backend, transcribe with Deepgram, generate structured coaching responses through Groq, and stream speech back to the browser alongside visual coaching cards.",
+      "FastAPI streams microphone audio to Deepgram for transcription. Groq generates a reply, Deepgram synthesizes the voice, and OpenSpline animates the tutor’s face from that audio.",
     decisions: [
-      "Use AudioWorklet for browser audio capture and playback.",
-      "Resample microphone audio to the transcription service’s expected sample rate.",
-      "Coordinate cancellation across speech generation and playback when the learner interrupts.",
+      "Connect the face when the page opens. Ask for microphone access when the learner starts a conversation.",
+      "Keep a small buffer of ordered audio packets so the renderer can keep playing while the next packets arrive.",
+      "On interruption, stop playback and cancel the current reply while keeping the conversation history.",
     ],
     result:
-      "A deployed voice-coaching application with spoken corrections, direct answers, visual coach cards, and a modular streaming backend. The source documents Docker and local development workflows.",
-    flow: [
-      "Microphone",
-      "Streaming STT",
-      "LLM coaching",
-      "Streaming TTS",
-      "Audio & cards",
-    ],
+      "The tutor runs in a browser on Render. Learners can speak or type, and voice chat is available if the avatar service is busy. The current deployment serves one conversation at a time.",
+    flow: ["Microphone", "Transcription", "Coaching reply", "Speech synthesis", "Avatar playback"],
   },
   {
     id: "ais-anomaly",
     index: "03",
-    title: "Signals in the open sea",
+    title: "Vessel Anomaly Detection",
     visual: "trends",
     label: "MAKING UNUSUAL MOVEMENT VISIBLE.",
     discipline: "GEOSPATIAL ML · ANOMALY DETECTION",
     year: "2026",
     category: "ML & systems",
     summary:
-      "An end-to-end AIS data pipeline that detects unusual vessel behavior and turns model outputs into interactive geospatial insights.",
+      "Flag unusual vessel movements in AIS position reports and inspect them on a map. The pipeline keeps the original coordinates separate from the scaled inputs used by the models.",
     stack: ["Python", "Scikit-learn", "PostGIS", "Folium", "Pandas"],
     repo: "https://github.com/Mani1454/ais-vessel-anomaly-detection",
     problem:
@@ -149,7 +134,7 @@ export const projects = [
       "Provide a side-by-side browser demo to make the full journey easy to explore.",
     ],
     result:
-      "An Android and web commerce project with customer browsing, cart and checkout, a store counter, live status updates, and a split-screen demonstration. It shows the full-stack engineering behind the AI work.",
+      "An Android and web commerce project with customer browsing, cart and checkout, a store counter, live status updates, and a split-screen demonstration. The demo shows an order moving from the customer’s basket to the store counter.",
     flow: [
       "Customer app",
       "Order & UPI",
@@ -165,7 +150,7 @@ export const capabilities = [
     icon: "nodes",
     title: "Agents & grounded reasoning",
     description:
-      "Connecting model reasoning to runbooks, tools, and controlled workflows, with clear approval and audit boundaries.",
+      "I connect agents to searchable runbooks and record the actions an operator approves.",
     tags: [
       "Multi-agent orchestration",
       "RAG · ChromaDB",
@@ -178,13 +163,13 @@ export const capabilities = [
     icon: "wave",
     title: "Real-time AI experiences",
     description:
-      "Building the streaming services and audio interfaces that make conversations with AI feel natural and responsive.",
+      "I connect speech recognition, synthesis, and avatar playback so a learner can speak, listen, and interrupt.",
     tags: [
       "Python · FastAPI",
       "WebSockets",
       "Deepgram · Groq",
+      "OpenSpline",
       "AudioWorklet",
-      "Async · Multithreading",
     ],
   },
   {
@@ -204,11 +189,13 @@ export const capabilities = [
 
 export const experience = [
   {
-    role: "AI & Automation Engineer",
-    company: "Enterprise AI Division",
+    role: "Associate Software Engineer",
+    company: "Accenture",
     date: "AUG 2026 — PRESENT",
-    description:
-      "Build AI-driven automation for enterprise IT operations, including ticket triage, workflow routing, and AI/ML integrations. Focus on reliable backend components and maintainable operational workflows.",
-    tags: ["Agentic AI", "Enterprise automation", "Backend engineering"],
+  },
+  {
+    role: "Software Developer Intern",
+    company: "Accenture",
+    date: "DEC 2025 — MAY 2026",
   },
 ];

@@ -8,11 +8,11 @@ export default function ProjectVisual({ type }) {
     return (
       <div className="visual visual-voice" aria-hidden="true">
         <div className="voice-wordmark">
-          sway<span>speak</span>
+          Speak with&nbsp;<span>Sway</span>
           <span className="voice-flower">✳</span>
         </div>
         <span className="visual-small voice-subtitle">
-          A LITTLE PRACTICE. A LOT MORE CONFIDENCE.
+          LIVE ENGLISH TUTOR
         </span>
         <div className="conversation">
           <div className="speech speech-one">
@@ -26,7 +26,7 @@ export default function ProjectVisual({ type }) {
           ))}
         </div>
         <span className="voice-listening">
-          <i /> YOUR VOICE, FINDING ITS FLOW.
+          <i /> LISTENING
         </span>
       </div>
     );

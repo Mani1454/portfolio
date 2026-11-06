@@ -124,7 +124,7 @@ export default function App() {
         >
           mk<span>.</span>
         </a>
-        <span className="header-note">A little curiosity goes a long way.</span>
+
         <button
           ref={menuButton}
           className="menu-toggle"
@@ -192,14 +192,13 @@ export default function App() {
             </div>
             <div className="hero-description">
               <p>
-                I build things that
+                I build voice apps
                 <br />
-                make AI <em>feel useful.</em>
+                and <em>AI agents.</em>
               </p>
               <span>
-                From a conversation that flows to an agent that helps.
-                <br className="desktop-break" /> Thoughtful engineering, with
-                people in mind.
+                Practice English with a talking tutor or trace how an
+                infrastructure agent proposes a fix for an incident.
               </span>
               <a
                 className="resume-link"
@@ -232,7 +231,7 @@ export default function App() {
         >
           <div className="section-rule" data-reveal>
             <h2 id="work-heading">Selected work</h2>
-            <span>2026 — A CONTINUING EXPLORATION</span>
+            <span>2026</span>
             <span>(04)</span>
           </div>
           <div className="work-grid">
@@ -248,15 +247,6 @@ export default function App() {
                   aria-label={`Read ${project.title} case study`}
                 >
                   <ProjectVisual type={project.visual} />
-                  <span className="cover-caption">
-                    {index === 0
-                      ? "CONVERSATIONS, WITHOUT THE FRICTION."
-                      : index === 1
-                        ? "A LITTLE MORE PEACE OF MIND."
-                        : index === 2
-                          ? "FINDING THE STORY IN THE SIGNAL."
-                          : "BUILT FOR THE SHOP NEXT DOOR."}
-                  </span>
                   <span className="view-project">
                     View project <Icon name="arrow-up-right" />
                   </span>
@@ -301,31 +291,27 @@ export default function App() {
                 ✳
               </span>
               <h2 id="about-heading">
-                Good technology should
-                <br />
-                make life <em>less complicated.</em>
-                <br />
-                That’s what I work toward.
+                About <em>Manish.</em>
               </h2>
             </div>
             <div className="about-columns" data-reveal>
               <p className="about-label">
-                Engineer by training.
+                Software engineer
                 <br />
-                Builder by instinct.
+                Based in India
               </p>
               <div className="about-copy">
                 <p>
-                  I’m Manish, an AI engineer with a computer science background
-                  from RGIPT. I like getting past the prototype: connecting
-                  models to the data, tools, and interfaces that make them
-                  useful.
+                  I studied computer science at the Rajiv Gandhi Institute of
+                  Petroleum Technology. At Accenture, I work on what happens
+                  after someone files an IT ticket: how it gets categorized,
+                  who should handle it, and when it needs escalating.
                 </p>
                 <p>
-                  My work spans voice applications, infrastructure agents, and
-                  machine learning. I care about the details in between—how a
-                  conversation handles an interruption, or when an automated
-                  action should wait for a person.
+                  Two of my projects explore when software should hand control
+                  back to a person. In Speak with Sway, a learner can interrupt
+                  the tutor mid-sentence. In my infrastructure lab, an operator
+                  can inspect a proposed fix before the agent carries it out.
                 </p>
               </div>
             </div>
@@ -373,7 +359,7 @@ export default function App() {
               <h3>The journey so far</h3>
               <div className="experience-list">
                 {experience.map((job) => (
-                  <div className="experience-row" key={job.company}>
+                  <div className="experience-row" key={job.role}>
                     <div>
                       <h4>{job.role}</h4>
                       <p>{job.company}</p>
@@ -383,7 +369,7 @@ export default function App() {
                 ))}
                 <div className="experience-row">
                   <div>
-                    <h4>Computer Science & Engineering</h4>
+                    <h4>B.Tech. in Computer Science & Engineering</h4>
                     <p>Rajiv Gandhi Institute of Petroleum Technology</p>
                   </div>
                   <span>2022 — 2026</span>
